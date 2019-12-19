@@ -48,11 +48,11 @@ export default {
       },
       rules: {
         username: [
-          { required: true, min: 3, max: 10, message: '请输入用户名', trigger: 'blur' },
+          { required: true, message: '请输入用户名', trigger: 'blur' },
           { min: 3, max: 10, message: '用户名长度在 3到 10 个字符', trigger: 'blur' }
         ],
         password: [
-          { required: true, min: 3, max: 10, message: '请输入密码', trigger: 'blur' },
+          { required: true, message: '请输入密码', trigger: 'blur' },
           { min: 3, max: 10, message: '密码长度在 3到 10 个字符', trigger: 'blur' }
         ]
       }

@@ -71,7 +71,7 @@ export default {
           console.log(res);
           if (res.meta.status === 200) {
             // 保存 token 到 session
-            window.sessionStorage.setItem("token",res.data.token)
+            window.sessionStorage.setItem("token", res.data.token)
             this.$message({
               message: '恭喜您，登录成功',
               type: 'success'

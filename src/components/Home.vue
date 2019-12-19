@@ -1,5 +1,7 @@
 <template>
   <div>
+    <el-button type="info"
+               @click="logout">退出按钮</el-button>
     Home 组件
   </div>
 </template>
@@ -15,7 +17,11 @@ export default {
 
   },
   methods: {
-
+    logout () {
+      window.sessionStorage.clear();
+      this.$router.push('/login')
+      
+    }
   }
 }
 </script>

@@ -6,8 +6,11 @@ import Welcome from '../components/Welcome.vue'
 import Users from '../components/User/users.vue'
 import Rights from '../components/Power/Rights.vue'
 import Roles from '../components/Power/Roles.vue'
+import Categories from '../components/Goods/Categories.vue'
+import Params from '../components/Goods/params.vue'
+import myheader from '../components/mycommon.vue'
 Vue.use(VueRouter)
-
+Vue.use(myheader)
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: Login },
@@ -19,7 +22,9 @@ const routes = [
       { path: '/welcome', component: Welcome },
       { path: '/users', component: Users },
       { path: '/rights', component: Rights },
-      { path: '/roles', component: Roles }
+      { path: '/roles', component: Roles },
+      { path: '/categories', component: Categories },
+      { path: '/params', component: Params }
     ]
   }
 ]

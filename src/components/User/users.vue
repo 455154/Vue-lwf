@@ -95,6 +95,7 @@
                         :enterable='false'
                         placement="top-start">
               <el-button type="warning"
+                         @click="setRole(scope.row)"
                          size="mini"
                          icon="el-icon-star-off"
                          circle></el-button>
@@ -181,6 +182,34 @@
       </el-dialog>
     </el-card>
     <!-- content end -->
+    <!-- 分配角色隐藏框 -->
+    <el-dialog title=" 分配角色"
+               :visible.sync="setRoleShow"
+               width="50%"
+               @close="setRoleClose">
+      <div>
+        <p>当前的用户:{{userInfo.username}}</p>
+        <p>当前的用户:{{userInfo.role_name}}</p>
+        <p>
+          分配新的角色:
+          <el-select v-model="roleId"
+                     placeholder="请选择">
+            <el-option v-for="item in roleList"
+                       :key="item.id"
+                       :label="item.roleName"
+                       :value="item.id">
+            </el-option>
+          </el-select>
+        </p>
+      </div>
+
+      <span slot="footer"
+            class="dialog-footer">
+        <el-button @click="setRoleShow = false">取 消</el-button>
+        <el-button type="primary"
+                   @click="setRoleEnd()">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -263,13 +292,49 @@ export default {
       },
       usersList: [],
       // 总数
-      total: 0
+      total: 0,
+      // 分配窗口 隐藏显示
+      setRoleShow: false,
+      // 分配窗口 UserId
+      UserId: '',
+      // 分配窗口 User
+      userInfo: {},
+      // roleList
+      roleList: [],
+      // 决定分配的角色
+      roleId: ''
     }
   },
   created () {
     this.getUsers()
   },
   methods: {
+    // 分配窗口确认按钮
+    async setRoleEnd () {
+      if (!this.roleId) return this.$message.error('请选择角色')
+      let { data: res } = await this.$http.put(`users/${this.UserId}/role`, { rid: this.roleId })
+      if (res.meta.status !== 200) return this.$message.error('获取失败')
+      this.getUsers()
+      this.setRoleShow = false
+    },
+    // 分配角色 按钮点击显示窗口
+    async setRole (row) {
+      this.setRoleShow = true
+      this.UserId = row.id
+      // 获取角色种类
+      let { data: res } = await this.$http.get('roles')
+      if (res.meta.status !== 200) return this.$message.error('获取失败')
+      this.userInfo = row
+      this.roleList = res.data
+    },
+    // 分配窗口关闭前 
+    setRoleClose () {
+      this.roleId = this.UserId = ''
+      this.userInfo = {}
+      this.roleList = []
+      // 重新渲染页面 
+      this.getUsers()
+    },
     del (id) {
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
         confirmButtonText: '确定',

@@ -27,7 +27,11 @@ import {
   Tooltip,
   MessageBox,
   Pagination,
-  Dialog
+  Dialog,
+  Tag,
+  Tree,
+  Select,
+  Option
 } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
@@ -41,6 +45,12 @@ axios.interceptors.request.use(config => {
 Vue.prototype.$http = axios
 Vue.prototype.$confirm = MessageBox.confirm
 
+// Vue.use(slot)
+// Vue.use(DropdownItem)
+Vue.use(Option)
+Vue.use(Select)
+Vue.use(Tree)
+Vue.use(Tag)
 Vue.use(Dialog)
 Vue.use(Pagination)
 Vue.use(Breadcrumb)

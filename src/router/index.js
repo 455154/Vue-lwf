@@ -9,6 +9,9 @@ import Roles from '../components/Power/Roles.vue'
 import Categories from '../components/Goods/Categories.vue'
 import Params from '../components/Goods/params.vue'
 import myheader from '../components/mycommon.vue'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
 Vue.use(VueRouter)
 Vue.use(myheader)
 const routes = [
@@ -32,12 +35,16 @@ const routes = [
 const router = new VueRouter({
   routes
 })
-
+NProgress.configure({ ease: 'ease', speed: 500 })
 // 挂载路由导航守卫 to 将要访问的路径 from 代表从哪个路径而来 next 代表放行 为一个函数
 router.beforeEach((to, from, next) => {
   if (to.path === '/login') return next()
   const token = window.sessionStorage.getItem('token')
   if (!token) return next('/login')
+  NProgress.start()
   next()
+})
+router.afterEach(route => {
+  NProgress.done()
 })
 export default router

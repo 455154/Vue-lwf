@@ -5,6 +5,7 @@ import router from './router'
 import './assets/css/global.css'
 // import store from 'store.js'
 import {
+  Alert,
   Cascader,
   Input,
   Switch,
@@ -34,12 +35,13 @@ import {
   Tag,
   Tree,
   Select,
-  Option
+  Option,
+  Tabs,
+  TabPane
 } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import TreeTable from 'vue-table-with-tree-grid'
-
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 // axios 请求拦截器 在每次发送请求之前 获取 config 在里面的请求头上面设置一个Authorization 值为 token
 axios.interceptors.request.use(config => {
@@ -52,6 +54,9 @@ Vue.prototype.$confirm = MessageBox.confirm
 // 全局注册 Vue - table
 Vue.component('tree-table', TreeTable)
 
+Vue.use(TabPane)
+Vue.use(Tabs)
+Vue.use(Alert)
 Vue.use(Cascader)
 Vue.use(Option)
 Vue.use(Select)

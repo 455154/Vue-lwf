@@ -16,7 +16,10 @@ module.exports = {
     'comma-spacing': 0,
     'padded-blocks': 0,
     'no-return-assign': 0,
-    'vue/no-unused-vars': 0
+    'vue/no-unused-vars': 0,
+    'space-before-function-paren':0,
+    'space-in-parens':0,
+    'no-multiple-empty-lines':0
   },
   parserOptions: {
     parser: 'babel-eslint'

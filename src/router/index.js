@@ -8,6 +8,8 @@ import Rights from '../components/Power/Rights.vue'
 import Roles from '../components/Power/Roles.vue'
 import Categories from '../components/Goods/Categories.vue'
 import Params from '../components/Goods/params.vue'
+import List from '../components/Goods/List.vue'
+import AddGoods from '../components/Goods/AddGoods.vue'
 import myheader from '../components/mycommon.vue'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -27,7 +29,12 @@ const routes = [
       { path: '/rights', component: Rights },
       { path: '/roles', component: Roles },
       { path: '/categories', component: Categories },
-      { path: '/params', component: Params }
+      { path: '/params', component: Params },
+      {
+        path: '/goods',
+        component: List
+      },
+      { path: '/goods/add', component: AddGoods }
     ]
   }
 ]

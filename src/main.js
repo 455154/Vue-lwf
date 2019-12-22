@@ -37,8 +37,19 @@ import {
   Select,
   Option,
   Tabs,
-  TabPane
+  TabPane,
+  Popconfirm,
+  Step,
+  Steps,
+  Checkbox,
+  CheckboxGroup,
+  Upload
 } from 'element-ui'
+
+import quillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import TreeTable from 'vue-table-with-tree-grid'
@@ -53,7 +64,14 @@ Vue.prototype.$confirm = MessageBox.confirm
 
 // 全局注册 Vue - table
 Vue.component('tree-table', TreeTable)
-
+// 富文本编辑器
+Vue.use(quillEditor)
+Vue.use(Upload)
+Vue.use(CheckboxGroup)
+Vue.use(Checkbox)
+Vue.use(Steps)
+Vue.use(Step)
+Vue.use(Popconfirm)
 Vue.use(TabPane)
 Vue.use(Tabs)
 Vue.use(Alert)
@@ -89,7 +107,16 @@ Vue.use(FormItem)
 Vue.prototype.$message = Message
 
 Vue.config.productionTip = false
-
+Vue.filter('dateFilter', function(originVal) {
+  const dt = new Date(originVal)
+  const y = dt.getFullYear()
+  const m = (dt.getMonth() + 1 + '').padStart(2, '0')
+  const d = (dt.getDate() + '').padStart(2, '0')
+  const hh = (dt.getHours() + '').padStart(2, '0')
+  const mm = (dt.getMinutes() + '').padStart(2, '0')
+  const ss = (dt.getSeconds() + '').padStart(2, '0')
+  return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+})
 new Vue({
   router,
   render: h => h(App)

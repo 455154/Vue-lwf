@@ -9,6 +9,8 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     semi: 0,
     quotes: 0,
+    'no-undef':0,
+    'comma-dangle':0,
     'no-unused-vars': 0,
     'object-curly-spacing': 0,
     'key-spacing': 0,

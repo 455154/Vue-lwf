@@ -43,7 +43,10 @@ import {
   Steps,
   Checkbox,
   CheckboxGroup,
-  Upload
+  Upload,
+  Timeline,
+  TimelineItem
+  
 } from 'element-ui'
 
 import quillEditor from 'vue-quill-editor'
@@ -65,6 +68,8 @@ Vue.prototype.$confirm = MessageBox.confirm
 // 全局注册 Vue - table
 Vue.component('tree-table', TreeTable)
 // 富文本编辑器
+Vue.use(Timeline)
+Vue.use(TimelineItem)
 Vue.use(quillEditor)
 Vue.use(Upload)
 Vue.use(CheckboxGroup)

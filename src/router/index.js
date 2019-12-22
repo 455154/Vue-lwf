@@ -11,6 +11,7 @@ import Params from '../components/Goods/params.vue'
 import List from '../components/Goods/List.vue'
 import AddGoods from '../components/Goods/AddGoods.vue'
 import myheader from '../components/mycommon.vue'
+import Order from '../components/Order/Order.vue'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
@@ -30,11 +31,9 @@ const routes = [
       { path: '/roles', component: Roles },
       { path: '/categories', component: Categories },
       { path: '/params', component: Params },
-      {
-        path: '/goods',
-        component: List
-      },
-      { path: '/goods/add', component: AddGoods }
+      { path: '/goods', component: List },
+      { path: '/goods/add', component: AddGoods },
+      { path: '/orders', component: Order }
     ]
   }
 ]
